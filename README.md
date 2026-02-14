@@ -4,9 +4,9 @@
 COLORS is a simple web application that allows users to log in and manage a personalized list of colors. Users can add new colors to their account and search through their existing colors using a keyword-based search.
 
 ## Technologies Used
-LAMP stack(Linux, Apache, MySQL, PHP) was used for the server stack.
-HTML, CSS and JavaScript were used for the frontend.
-PHP and MySQL were used for the backend.
+1. LAMP stack (Linux, Apache, MySQL, PHP) was used for the server stack.
+2. HTML, CSS and JavaScript were used for the frontend.
+3. PHP and MySQL were used for the backend.
 
 ## High-Level Setup Instructions
 1. Set up a LAMP environment (Linux, Apache, MySQL, PHP) on a web server (DigitalOcean recommended).
@@ -22,6 +22,6 @@ PHP and MySQL were used for the backend.
 4. After logging in, users can add new colors, or search for colors they have added.
 
 ## Assumptions and Limitations
-User accounts are assumed to already be inserted in the database.
-The frontend assumes the backend is reachable at a predefined URL.
-Minimal error handling and input validation.
+1. User accounts are assumed to already be inserted in the database.
+2. The frontend assumes the backend is reachable at a predefined URL.
+3. Minimal error handling and input validation.
