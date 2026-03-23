@@ -1,0 +1,12 @@
+@startuml
+left to right direction
+actor User
+package COLORS {
+  usecase "Login" as UC1
+  usecase "Add Color" as UC2
+  usecase "Search Color" as UC3
+}
+User --> UC1
+User --> UC2
+User --> UC3
+@enduml
