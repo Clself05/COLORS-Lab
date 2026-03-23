@@ -1,0 +1,26 @@
+@startuml
+start
+
+:Open Colors Website;
+
+while (Sign in successful?) is (no)
+  :Enter username and password;
+  :Attempt sign in;
+endwhile (yes)
+
+while (User wants to continue?) is (yes)
+
+  if (Select action) then (Search Color)
+    :Enter search query;
+    :View results;
+  else (Add Color)
+    :Enter color details;
+    :Save color;
+  endif
+
+endwhile (no)
+
+:Logout;
+
+stop
+@enduml
