@@ -1,0 +1,47 @@
+@startuml
+
+
+
+
+
+class Login <<PHP>> {
+    - login : string
+    - password : string
+    --
+    + POST /Login.php
+}
+
+class AddColor <<PHP>> {
+    - color : string
+    - userId : int
+    --
+    + POST /AddColor.php
+}
+
+class SearchColors <<PHP >> {
+    - search : string
+    - userId : int
+    --
+    + POST /SearchColors.php
+}
+
+
+class code <<JavaScript>> {
+    - userId : int
+    - firstName : string
+    - lastName : string
+    --
+    + doLogin()
+    + doLogout()
+    + addColor()
+    + searchColor()
+    + saveCookie()
+    + readCookie()
+ }
+
+
+code --> Login : "calls"
+code --> AddColor : "calls"
+code --> SearchColors : "calls"
+
+@enduml
