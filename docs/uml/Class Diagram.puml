@@ -1,47 +1,19 @@
 @startuml
 
-
-
-
-
-class Login <<PHP>> {
-    - login : string
-    - password : string
-    --
-    + POST /Login.php
+class Users {
+  +ID : INT
+  +FirstName : VARCHAR(50)
+  +LastName : VARCHAR(50)
+  +Login : VARCHAR(50)
+  +Password : VARCHAR(50)
 }
 
-class AddColor <<PHP>> {
-    - color : string
-    - userId : int
-    --
-    + POST /AddColor.php
+class Colors {
+  +ID : INT
+  +Name : VARCHAR(50)
+  +UserID : INT <<FK>>
 }
 
-class SearchColors <<PHP >> {
-    - search : string
-    - userId : int
-    --
-    + POST /SearchColors.php
-}
-
-
-class code <<JavaScript>> {
-    - userId : int
-    - firstName : string
-    - lastName : string
-    --
-    + doLogin()
-    + doLogout()
-    + addColor()
-    + searchColor()
-    + saveCookie()
-    + readCookie()
- }
-
-
-code --> Login : "calls"
-code --> AddColor : "calls"
-code --> SearchColors : "calls"
+Users "1" -- "0..*" Colors : owns >
 
 @enduml
