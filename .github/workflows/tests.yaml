@@ -53,9 +53,15 @@ jobs:
           );
           EOF
 
-      - name: Start PHP server
+      - name: Start PHP server with environment variables
         working-directory: ${{ github.workspace }}
-        run: php -S localhost:8000 -t api &
+        run: |
+          export DB_HOST=127.0.0.1
+          export DB_USER=root
+          export DB_PASS=root
+          export DB_NAME=colorsdb
+          php -S localhost:8000 -t api &
+          sleep 2
 
       - name: Debug working directory
         run: |
@@ -63,7 +69,7 @@ jobs:
           pwd
           echo "Contents:"
           ls -R .
-      
+
       - name: Run tests
         env:
           DB_HOST: 127.0.0.1
