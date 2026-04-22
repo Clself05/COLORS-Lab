@@ -30,18 +30,3 @@ function waitForServer(port, timeout = 5000) {
         check();
     });
 }
-
-beforeAll(async () => {
-    phpServer = spawn('php', ['-S', 'localhost:8000', '-t', './api'], {
-        stdio: 'ignore'
-    });
-
-    // Wait until PHP server is actually listening
-    await waitForServer(8000);
-});
-
-afterAll(() => {
-    if (phpServer) {
-        phpServer.kill();
-    }
-});
