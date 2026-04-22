@@ -34,6 +34,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Wait for MySQL to be ready
+        run: |
+          for i in {1..30}; do
+            mysql -h 127.0.0.1 -u root -proot -e "SELECT 1" && break
+            echo "MySQL not ready yet..."
+            sleep 1
+          done
+
       - name: Create Colors table
         run: |
           sudo apt-get install mysql-client
@@ -46,7 +54,7 @@ jobs:
           EOF
 
       - name: Start PHP server
-        working-directory: ${{ github.workspace }}/COLORS-Lab
+        working-directory: ${{ github.workspace }}
         run: php -S localhost:8000 -t api &
 
       - name: Debug working directory
