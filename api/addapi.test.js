@@ -2,7 +2,7 @@ import request from 'supertest';
 
 describe('Add Color API Integration Test', () => {
     test('API responds and contains JSON with an error field', async () => {
-        const response = await request('http://localhost:8000/addColor.php')
+        const response = await request('http://localhost:8000/AddColor.php')
             .post('')
             .set('Content-Type', 'application/json')
             .send(JSON.stringify({
