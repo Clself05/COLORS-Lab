@@ -1,0 +1,79 @@
+name: Run Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: colorsdb
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install PHP
+        run: sudo apt-get install php php-mysqli
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Wait for MySQL to be ready
+        run: |
+          for i in {1..30}; do
+            mysql -h 127.0.0.1 -u root -proot -e "SELECT 1" && break
+            echo "MySQL not ready yet..."
+            sleep 1
+          done
+
+      - name: Create Colors table
+        run: |
+          sudo apt-get install mysql-client
+          mysql -h 127.0.0.1 -u root -proot colorsdb <<EOF
+          CREATE TABLE Colors (
+            ID INT AUTO_INCREMENT PRIMARY KEY,
+            UserId VARCHAR(255),
+            Name VARCHAR(255)
+          );
+          EOF
+
+      - name: Start PHP server with environment variables
+        working-directory: ${{ github.workspace }}
+        run: |
+          export DB_HOST=127.0.0.1
+          export DB_USER=root
+          export DB_PASS=root
+          export DB_NAME=colorsdb
+          php -S localhost:8000 -t api &
+          sleep 2
+
+      - name: Debug working directory
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Contents:"
+          ls -R .
+
+      - name: Run tests
+        env:
+          DB_HOST: 127.0.0.1
+          DB_USER: root
+          DB_PASS: root
+          DB_NAME: colorsdb
+        run: npm test

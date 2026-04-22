@@ -1,7 +1,12 @@
 {
   "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "babel-jest": "^30.3.0",
     "eslint": "^10.2.0",
     "htmlhint": "^1.9.2",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
     "stylelint": "^17.6.0",
     "stylelint-config-standard": "^40.0.0"
   },
@@ -145,6 +150,7 @@
     "strip-ansi": "^7.2.0",
     "strip-json-comments": "^3.1.1",
     "stylelint-config-recommended": "^18.0.0",
+    "supertest": "^7.2.2",
     "supports-color": "^7.2.0",
     "supports-hyperlinks": "^4.4.0",
     "svg-tags": "^1.0.0",
@@ -162,7 +168,7 @@
     "yocto-queue": "^0.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

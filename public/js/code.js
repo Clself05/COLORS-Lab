@@ -93,7 +93,7 @@ function doLogout() {
 	window.location.href = "index.html";
 }
 
-function addColor() {
+export function addColor() {
 	let newColor = document.getElementById("colorText").value;
 	document.getElementById("colorAddResult").innerHTML = "";
 
@@ -119,7 +119,7 @@ function addColor() {
 
 }
 
-function searchColor() {
+export function searchColor() {
 	let srch = document.getElementById("searchText").value;
 	document.getElementById("colorSearchResult").innerHTML = "";
 
