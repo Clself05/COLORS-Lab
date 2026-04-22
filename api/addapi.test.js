@@ -10,6 +10,8 @@ describe('Add Color API Integration Test', () => {
                 userId: "123"
             }));
 
+        console.log("RAW RESPONSE:", response.text);
+
         // API must respond with something
         expect(response.text.length).toBeGreaterThan(0);
 
