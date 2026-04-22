@@ -46,7 +46,7 @@ jobs:
           EOF
 
       - name: Start PHP server
-        working-directory: ${{ github.workspace }}
+        working-directory: ${{ github.workspace }}/COLORS-Lab
         run: php -S localhost:8000 -t api &
 
       - name: Debug working directory
